@@ -93,7 +93,7 @@ const WeatherRow = (props) => (
     <TableRowColumn>{props.datum.main.temp_min}/{props.datum.main.temp_max}</TableRowColumn>
     <TableRowColumn>{props.datum.main.humidity}%</TableRowColumn>
     <TableRowColumn>{props.datum.weather[0].description}</TableRowColumn>
-    <TableRowColumn>{props.datum.wind.speed}</TableRowColumn>
+    <TableRowColumn>{props.datum.wind.speed*2.24}</TableRowColumn>
   </TableRow>
 )
 
@@ -138,7 +138,7 @@ function WeatherTable(props) {
           <TableHeaderColumn>High/Low</TableHeaderColumn>
           <TableHeaderColumn>Humidity</TableHeaderColumn>
           <TableHeaderColumn>Description</TableHeaderColumn>
-          <TableHeaderColumn>Wind</TableHeaderColumn>
+          <TableHeaderColumn>Wind MPH</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody>{weatherRows}</TableBody>
