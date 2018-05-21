@@ -99,17 +99,36 @@ const WeatherRow = (props) => (
 
 function WeatherTable(props) {
   const weatherRows = props.weatherData.map(datum => <WeatherRow  datum={datum} />)
+
+
+  /*
   //need to separate based on day
 
-  let day1 = [];
-  let day2 = [];
-  let day3 = [];
-  let day4 = [];
-  let day5 = [];
-  let day6 = [];
+  let days = [[],[],[],[],[]];
+
+//about 8 results per day
 
 
-  return (
+
+  for(let numOfDays= 0; numOfDays < 5;i++)
+  {
+
+        const singleDay = datum.dt_txt.substring(0,9); // yyyy-mm-dd
+
+        for(let i = 0; i < 8; i++)
+        {
+                if()
+
+
+        }
+
+
+
+  }
+
+*/
+
+   return (
     <Table>
       <TableHeader>
         <TableRow>
