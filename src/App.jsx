@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import AppBar from 'material-ui/AppBar';
-
+import {Line} from 'react-chartjs-2';
 import {
   Table,
   TableBody,
@@ -84,65 +84,119 @@ function kToF(kel)
 {
   return kel * (9/5) - 459.67;
 }
-
+//<TableRowColumn>{props.datum.dt_txt}</TableRowColumn>
 const WeatherRow = (props) => (
   <TableRow >
 
-    <TableRowColumn>{props.datum.dt_txt}</TableRowColumn>
+  <TableRowColumn>{props.datum.dt_txt}</TableRowColumn>
     <TableRowColumn>{kToF(props.datum.main.temp.toFixed(1))}</TableRowColumn>
     <TableRowColumn>{props.datum.main.temp_min}/{props.datum.main.temp_max}</TableRowColumn>
     <TableRowColumn>{props.datum.main.humidity}%</TableRowColumn>
     <TableRowColumn>{props.datum.weather[0].description}</TableRowColumn>
     <TableRowColumn>{props.datum.wind.speed*2.24}</TableRowColumn>
+
   </TableRow>
 )
 
+
+
 function WeatherTable(props) {
-  const weatherRows = props.weatherData.map(datum => <WeatherRow  datum={datum} />)
+//  const weatherRows = props.weatherData.map(datum => <WeatherRow  datum={datum} />)
 
 
-  /*
+
   //need to separate based on day
 
   let days = [[],[],[],[],[]];
 
 //about 8 results per day
+let weatherRows = 0;
+let weatherRows2 = 0;
 
 
-
-  for(let numOfDays= 0; numOfDays < 5;i++)
+if(props.weatherData.length !=0)
+{
+  for(var numOfDays= 0; numOfDays < 5;numOfDays++)
   {
 
-        const singleDay = datum.dt_txt.substring(0,9); // yyyy-mm-dd
+        let singleDay = props.weatherData[numOfDays*8].dt_txt.substring(0,10); // yyyy-mm-dd
 
-        for(let i = 0; i < 8; i++)
+        for(var i = 0; i < 7; i++)
         {
-                if()
-
+            let v = props.weatherData[i+ numOfDays*8].dt_txt.substring(0,10);
+                if( v === singleDay)
+                {
+                    days[numOfDays].push(props.weatherData[i+ numOfDays*8]);
+                  }
 
         }
-
-
-
   }
 
-*/
+    weatherRows = days[0].map(datum => <WeatherRow  datum={datum} />);
 
+    weatherRows2 = {
+      labels: [0,1,2,3,4,5,6],
+      datasets: [
+          {
+            label: 'Todays weather',
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [days[0][0].main.temp,days[0][1].main.temp,days[0][2].main.temp,days[0][3].main.temp,
+                  days[0][4].main.temp,days[0][5].main.temp,days[0][6].main.temp
+          ]
+
+          }]
+
+
+      };
+
+
+}
+  //const
+    //const weatherRows1 = days[0].map(datum => <WeatherRow  datum={datum} />);
+  //    const weatherRows3 = days[0].map(datum => <WeatherRow  datum={datum} />);
+      //  const weatherRows4 = days[0].map(datum => <WeatherRow  datum={datum} />);
+      //    const weatherRows5 = days[0].map(datum => <WeatherRow  datum={datum} />);
+  //
    return (
-    <Table>
-      <TableHeader>
-        <TableRow>
+     <div>
+          <Table>
+            <TableHeader>
+              <TableRow>
 
-          <TableHeaderColumn>Day</TableHeaderColumn>
-          <TableHeaderColumn>Temperature</TableHeaderColumn>
-          <TableHeaderColumn>High/Low</TableHeaderColumn>
-          <TableHeaderColumn>Humidity</TableHeaderColumn>
-          <TableHeaderColumn>Description</TableHeaderColumn>
-          <TableHeaderColumn>Wind MPH</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
-      <TableBody>{weatherRows}</TableBody>
-    </Table>
+                <TableHeaderColumn>Day</TableHeaderColumn>
+                <TableHeaderColumn>Temperature</TableHeaderColumn>
+                <TableHeaderColumn>High/Low</TableHeaderColumn>
+                <TableHeaderColumn>Humidity</TableHeaderColumn>
+                <TableHeaderColumn>Description</TableHeaderColumn>
+                <TableHeaderColumn>Wind MPH</TableHeaderColumn>
+
+              </TableRow>
+
+            </TableHeader>
+            <TableBody>{weatherRows}</TableBody>
+
+          </Table>
+
+            <Line data={weatherRows2} />
+
+          </div>
+
   );
 }
 
