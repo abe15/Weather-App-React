@@ -7,3 +7,5 @@ This is a simple weather app using JSX and Dark Sky API to get the weather . I u
 - Install node packages `npm install`
 - Serve it locally `npm start`
 - Go to `http://localhost:3000`
+
+![Screen Shot](https://raw.githubusercontent.com/abe15/Weather-App-React/master/Screenshot.jpg
