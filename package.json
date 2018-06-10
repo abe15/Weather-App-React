@@ -1,40 +1,36 @@
 {
-  "name": "pro-mern-stack",
+  "name": "Weather-Tracker",
   "version": "1.0.0",
-  "description": "Pro MERN Stack",
-  "main": "index.js",
+  "description": "Weather app using MERN",
+  "main": "server.js",
   "scripts": {
-    "compile": "babel src --presets react,es2015 --out-dir static",
-    "watch": "babel src --presets react,es2015 --out-dir static --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "node_modules\\.bin\\webpack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vasansr/pro-mern-stack.git"
+    "url": "https://github.com/abe15/Weather-App-React"
   },
   "keywords": [
     "mern",
     "react",
     "mongodb",
     "express",
-    "node"
+    "node",
+    "material-ui"
   ],
-  "author": "Vasan Subramanian",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vasansr/pro-mern-stack/issues"
-  },
-  "homepage": "https://github.com/vasansr/pro-mern-stack#readme",
+  "author": "Abraham Barboza",
+
+  "homepage": "https://github.com/abe15/Weather-App-React#readme",
   "dependencies": {
-    "chart.js": "^2.7.2",
+    "@material-ui/core": "^1.2.1",
+    "body-parser": "^1.18.3",
     "css-loader": "^0.28.11",
     "express": "^4.14.0",
     "file-loader": "^1.1.11",
-    "material-ui": "^0.20.1",
     "moment": "^2.22.1",
+    "mongo": "^0.1.0",
     "react-animated-weather": "^1.0.3",
-    "react-chartjs-2": "^2.7.2",
-    "react-icons-weather": "^1.0.5",
+    "react-moment": "^0.7.0",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3"
